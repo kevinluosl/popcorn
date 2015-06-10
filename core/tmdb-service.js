@@ -14,6 +14,9 @@ var UPCOMING_FEED = "https://api.themoviedb.org/3/movie/upcoming?api_key=" + API
 var TOP_RATED_FEED = "https://api.themoviedb.org/3/movie/top_rated?api_key=" + API_KEY;
 var POPULAR_FEED = "https://api.themoviedb.org/3/movie/popular?api_key=" + API_KEY;
 var MOVIE = "https://api.themoviedb.org/3/movie/";
+
+var DB_BANG_DAN_FEED = 'https://api.douban.com/v2/movie/weekly';
+
 /**
  * @class TmdbService
  * @extends Montage
@@ -33,11 +36,12 @@ exports.TmdbService = Montage.specialize(/** @lends TmdbService# */ {
         value: function () {
             var self = this;
 
-            self.latestBoxOffice = new CategoryController("Box Office", "box_office");
-            self.upcoming = new CategoryController("Upcoming", "upcoming");
-            self.topDvdRentals = new CategoryController("Top Rated", "rentals");
-            self.inTheaters = new CategoryController("Popular", "in_theaters");
+            self.latestBoxOffice = new CategoryController("票房榜", "box_office");
+            self.upcoming = new CategoryController("即将上映", "upcoming");
+            self.topDvdRentals = new CategoryController("评分榜", "rentals");
+            self.inTheaters = new CategoryController("最受欢迎", "in_theaters");
 
+            //使用Q.js Promise获取数据
             var boxOfficePromise = this.loadLatestBoxOfficeMovies()
             .then(function (latestBoxOffice) {
                 self.latestBoxOffice.contentController.content = latestBoxOffice;

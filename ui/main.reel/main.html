@@ -26,7 +26,7 @@
                 "element": {"#": "details"}
             },
             "bindings": {
-                "movie": {"<-": "@moviestrip.categoryContentController.selection.one()"}
+                "movie": {"<-": "@moviestrip.categoryContentController.selection.0"}
             }
         },
         "moviestrip": {
@@ -36,7 +36,7 @@
                 "movieDetails": {"@": "details"}
             },
             "bindings": {
-                "categoryContentController": {"<-": "@owner.rottenTomato.categories.selection.one().contentController"}
+                "categoryContentController": {"<-": "@owner.rottenTomato.categories.selection.0.contentController"}
             }
         },
         "player": {

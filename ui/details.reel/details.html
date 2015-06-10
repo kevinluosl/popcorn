@@ -74,7 +74,7 @@
                 "element": {"#": "runtime"}
             },
             "bindings": {
-                "value": {"<-": "(@owner.movie.runtime/60).floor() + 'h ' + @owner.movie.runtime%60 + 'min'"}
+                "value": {"<-": "(@owner.movie.runtime/60).floor() + '小时' + @owner.movie.runtime%60 + '分'"}
             }
         },
         "scroller": {
@@ -116,32 +116,32 @@
         <div class="summary">
             <div>
                 <div>
-                    Release
+                    上映
                 </div>
                 <time data-montage-id="dates" class="score"></time>
             </div>
             <div>
                 <div>
-                    Rating
+                    分级
                 </div>
                 <span data-montage-id="maturity" class="maturity"></span>
             </div>
             <div>
                 <div>
-                    Duration
+                    时长
                 </div>
                 <span data-montage-id="runtime" class="score"></span>
             </div>
             <div>
                 <div>
-                    Popularity
+                    口碑
                 </div>
                 <span data-montage-id="criticsScore" class="score"></span>
                 <span data-montage-id="popularityIcon" class="icon-popularity"></span>
             </div>
             <div>
                 <div>
-                    Score
+                    评分
                 </div>
                 <span data-montage-id="audienceScore" class="score"></span>
                 / 10
@@ -153,7 +153,7 @@
         </div>
         <nav class="action-buttons">
             <button data-montage-id="trailerButton" class="button button-trailer">
-                Trailer
+                预告片
             </button>
         </nav>
     </div>

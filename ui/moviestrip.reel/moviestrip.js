@@ -51,7 +51,6 @@ exports.Moviestrip = Component.specialize({
     _startChangeCategoryTransition: {
         value: function () {
             var self = this;
-
             this._detailsHidden = true;
             this._flowHidden = true;
 

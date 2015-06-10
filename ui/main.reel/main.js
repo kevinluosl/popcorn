@@ -7,11 +7,18 @@ var Component = require("montage/ui/component").Component,
 //TODO do not use matte toggle buttons
 exports.Main = Component.specialize({
 
+    /*
+     *整个Montage App的入口。
+     *
+     */
     constructor: {
         value: function Main () {
+            //监听打开预览页事件
             this.application.addEventListener( "openTrailer", this, false);
 
+            //刻意控制一下App的draw方法在数据第一次获取完成之后再执行，通常不需要做这件事。
             this.canDrawGate.setField("moviesLoaded", false);
+            //开始从themoviedb API获取影片信息
             this._initialDataLoad = this.rottenTomato.load();
         }
     },
@@ -24,15 +31,24 @@ exports.Main = Component.specialize({
         value: null
     },
 
+    /*
+     *在html模版被初始化完成后执行，在enterDocument以及draw之前
+     *
+     */
     templateDidLoad: {
         value: function () {
             var self = this;
             self._initialDataLoad.then(function () {
+                //这个时候设置canDraw，允许draw
                 self.canDrawGate.setField("moviesLoaded", true);
             }).done();
         }
     },
 
+    /*
+     *响应openTrailer事件，montage的事件遵循camelCase,规则handleXXXXX可以自动响应事件。
+     *
+     */
     handleOpenTrailer: {
         value: function (event) {
             var title = event.detail.title,

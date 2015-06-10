@@ -21,6 +21,7 @@ exports.JsonpTransport = Montage.specialize(/** @lends JsonpTransport# */ {
 
     makeRequest: {
         value: function (url, servicePrefix, callbackParameter) {
+            //使用Q.js Promise获取数据，API是JSON数据格式
             var deferredResponse = Promise.defer(),
                 self = this,
                 parsedUrl = Url.parse(url),
@@ -29,7 +30,6 @@ exports.JsonpTransport = Montage.specialize(/** @lends JsonpTransport# */ {
                 callbackMethodName = callbackNamePrefix + Uuid.generate().replace(/-/g, "_"),
                 scriptElement = document.createElement("script"),
                 requestUrl;
-
             window[callbackMethodName] = function(data) {
                 self._handleResponse(data, deferredResponse);
                 document.head.removeChild(scriptElement);
